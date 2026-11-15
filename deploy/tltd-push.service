@@ -1,0 +1,9 @@
+[Unit]
+Description=TLTD push check
+
+[Service]
+Type=oneshot
+WorkingDirectory=/opt/tltd
+EnvironmentFile=/etc/tltd.env
+ExecStart=/opt/tltd/.venv/bin/flask --app app push-check
+User=www-data

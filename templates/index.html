@@ -1,0 +1,146 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="csrf" content="{{ csrf() }}"><meta name="theme-color" content="#6B8770"><title>TLTD</title>
+<link rel="icon" href="{{ url_for('static', filename='icon-192.png') }}">
+<link rel="manifest" href="{{ url_for('static', filename='manifest.webmanifest') }}">
+<link rel="apple-touch-icon" href="{{ url_for('static', filename='icon-192.png') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+<svg class="sprite" aria-hidden="true" focusable="false"><symbol id="i-home" viewBox="0 0 24 24"><path d="M3 11l9-8 9 8v9a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1z"/></symbol><symbol id="i-tasks" viewBox="0 0 24 24"><path d="M4 5a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2z"/><path d="M8 12l3 3 5-6"/></symbol><symbol id="i-habits" viewBox="0 0 24 24"><path d="M20 11a8 8 0 0 0-14.9-3M4 4v4h4M4 13a8 8 0 0 0 14.9 3M20 20v-4h-4"/></symbol><symbol id="i-goals" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1.5"/></symbol><symbol id="i-calendar" viewBox="0 0 24 24"><path d="M4 6a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v13a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2z"/><path d="M4 10h16M8 3v4M16 3v4"/></symbol><symbol id="i-reports" viewBox="0 0 24 24"><path d="M5 20V10M12 20V4M19 20v-7"/></symbol><symbol id="i-notes" viewBox="0 0 24 24"><path d="M7 3h8l4 4v13a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1z"/><path d="M9 12h6M9 16h6"/></symbol><symbol id="i-settings" viewBox="0 0 24 24"><path d="M4 7h10M18 7h2M4 17h2M10 17h10M14 5v4M6 15v4"/></symbol><symbol id="i-bell" viewBox="0 0 24 24"><path d="M6 9a6 6 0 0 1 12 0c0 6 2 7 2 7H4s2-1 2-7M10 20a2 2 0 0 0 4 0"/></symbol><symbol id="i-plus" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></symbol><symbol id="i-close" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></symbol><symbol id="i-check" viewBox="0 0 24 24"><path d="M5 12l5 5 9-10"/></symbol><symbol id="i-more" viewBox="0 0 24 24"><circle cx="5" cy="12" r="1.2"/><circle cx="12" cy="12" r="1.2"/><circle cx="19" cy="12" r="1.2"/></symbol><symbol id="i-next" viewBox="0 0 24 24"><path d="M15 6l-6 6 6 6"/></symbol><symbol id="i-prev" viewBox="0 0 24 24"><path d="M9 6l6 6-6 6"/></symbol><symbol id="i-grid" viewBox="0 0 24 24"><rect x="4" y="4" width="6" height="6" rx="1"/><rect x="14" y="4" width="6" height="6" rx="1"/><rect x="4" y="14" width="6" height="6" rx="1"/><rect x="14" y="14" width="6" height="6" rx="1"/></symbol></svg>
+<div class="shell">
+<aside class="side" id="side" aria-label="القائمة">
+<div class="side-top"><img class="logo" src="{{ url_for('static', filename='img/logo.svg') }}" alt="TLTD، Too Lazy To Do"><button type="button" class="icon-btn side-close" id="sclose" aria-label="إغلاق القائمة"><svg class="i" aria-hidden="true"><use href="#i-close"/></svg></button></div>
+<nav class="side-nav" aria-label="الأقسام">
+<a href="#home" data-v="home"><svg class="i" aria-hidden="true"><use href="#i-home"/></svg>الرئيسية</a>
+<a href="#tasks" data-v="tasks"><svg class="i" aria-hidden="true"><use href="#i-tasks"/></svg>المهام</a>
+<a href="#habits" data-v="habits"><svg class="i" aria-hidden="true"><use href="#i-habits"/></svg>العادات</a>
+<a href="#goals" data-v="goals"><svg class="i" aria-hidden="true"><use href="#i-goals"/></svg>الأهداف</a>
+<a href="#calendar" data-v="calendar"><svg class="i" aria-hidden="true"><use href="#i-calendar"/></svg>التقويم</a>
+<a href="#reports" data-v="reports"><svg class="i" aria-hidden="true"><use href="#i-reports"/></svg>التقارير</a>
+<a href="#notes" data-v="notes"><svg class="i" aria-hidden="true"><use href="#i-notes"/></svg>الملاحظات</a>
+<a href="#settings" data-v="settings"><svg class="i" aria-hidden="true"><use href="#i-settings"/></svg>الإعدادات</a>
+</nav>
+<div class="side-foot"><img src="{{ url_for('static', filename='img/mascot-sleepy.svg') }}" alt=""><p>خطوات صغيرة، أحلام كبيرة.</p></div>
+</aside>
+<div class="scrim" id="scrim" hidden></div>
+<div class="main-col">
+<header class="topbar"><a class="brand-sm" href="#home"><img src="{{ url_for('static', filename='img/logo.svg') }}" alt="TLTD"></a><span class="grow"></span>
+<a class="icon-btn" href="#settings" aria-label="إعدادات الإشعارات"><svg class="i" aria-hidden="true"><use href="#i-bell"/></svg></a><img class="avatar" src="{{ url_for('static', filename='img/mascot-happy.svg') }}" alt=""></header>
+<main id="main" tabindex="-1" data-name="{{ name }}">
+<p id="err" class="alert err" role="alert" hidden></p>
+
+<section id="v-home" class="view">
+<div class="page-head"><div><h1 id="hi"></h1><p class="sub" id="hint"></p></div><span class="chip-date" id="dchip"></span></div>
+<div class="hero"><svg class="hills" viewBox="0 0 800 240" preserveAspectRatio="none" aria-hidden="true"><circle class="sun" cx="690" cy="60" r="30"/><path class="hl1" d="M0 150 C150 100 300 140 450 115 S700 95 800 125 V240 H0Z"/><path class="hl2" d="M0 190 C200 150 350 195 520 168 S740 160 800 182 V240 H0Z"/><circle class="bush" cx="90" cy="170" r="26"/><circle class="bush" cx="125" cy="178" r="20"/><path class="hl3" d="M0 222 C250 200 450 232 800 205 V240 H0Z"/></svg><div class="hero-in"><div class="hero-msg"><img class="hm-img" id="hmood" alt="" width="46" height="44"><strong id="hm"></strong></div><img class="hero-img" src="{{ url_for('static', filename='img/mascot-main.svg') }}" alt="" width="250" height="171"></div></div>
+<div class="tiles"><button type="button" class="tile" data-new="task" data-tone="blue"><svg class="i" aria-hidden="true"><use href="#i-tasks"/></svg><span>مهمة جديدة</span></button><button type="button" class="tile" data-new="goal" data-tone="peach"><svg class="i" aria-hidden="true"><use href="#i-goals"/></svg><span>هدف جديد</span></button><button type="button" class="tile" data-new="habit" data-tone="mint"><svg class="i" aria-hidden="true"><use href="#i-habits"/></svg><span>عادة جديدة</span></button><button type="button" class="tile" data-new="note" data-tone="lav"><svg class="i" aria-hidden="true"><use href="#i-notes"/></svg><span>ملاحظة اليوم</span></button></div>
+<div class="grid-3">
+<article class="card"><div class="card-head"><h2>مهام اليوم</h2><span class="count" id="hc-tasks-n"></span></div><div id="hc-tasks"></div><a class="more-link" href="#tasks">عرض الكل</a></article>
+<article class="card"><div class="card-head"><h2>أهداف هذا الأسبوع</h2><span class="count" id="hc-goals-n"></span></div><div id="hc-goals"></div><a class="more-link" href="#goals">عرض الكل</a></article>
+<article class="card"><div class="card-head"><h2>العادات</h2><span class="count" id="hc-habits-n"></span></div><div id="hc-habits"></div><a class="more-link" href="#habits">عرض الكل</a></article>
+</div>
+</section>
+
+<section id="v-tasks" class="view">
+<div class="page-head"><h1>المهام</h1><button type="button" class="btn" data-new="task"><svg class="i" aria-hidden="true"><use href="#i-plus"/></svg> مهمة جديدة</button></div>
+<div class="seg" role="group" aria-label="عرض المهام"><button type="button" data-tf="today" aria-pressed="true">اليوم</button><button type="button" data-tf="next" aria-pressed="false">القادمة</button></div>
+<div class="card" id="tlist"></div>
+</section>
+
+<section id="v-habits" class="view">
+<div class="page-head"><h1>العادات</h1><button type="button" class="btn" data-new="habit"><svg class="i" aria-hidden="true"><use href="#i-plus"/></svg> عادة جديدة</button></div>
+<p class="sub">مهام تتكرر في الأيام المختارة، وتُنشأ تلقائيًا في التقويم.</p>
+<div id="hlist" class="grid-2"></div>
+</section>
+
+<section id="v-goals" class="view">
+<div class="page-head"><h1>الأهداف</h1><button type="button" class="btn" data-new="goal"><svg class="i" aria-hidden="true"><use href="#i-plus"/></svg> هدف جديد</button></div>
+<p class="sub">يبدأ الأسبوع يوم السبت، ويُحتسب اليوم للهدف عند إنجاز مهمة مرتبطة به.</p>
+<div class="tabs" id="gtabs"></div>
+<div id="glist" class="grid-2"></div>
+</section>
+
+<section id="v-calendar" class="view">
+<div class="page-head"><div class="row"><button type="button" class="icon-btn" data-mnav="-1" aria-label="الشهر السابق"><svg class="i" aria-hidden="true"><use href="#i-prev"/></svg></button><h1 id="mt"></h1><button type="button" class="icon-btn" data-mnav="1" aria-label="الشهر التالي"><svg class="i" aria-hidden="true"><use href="#i-next"/></svg></button></div></div>
+<div class="cal-layout"><div class="card cal-card"><div class="cal" id="cal"></div>
+<div class="legend"><span><i class="sw lg-g"></i>أُنجزت كل المهام</span><span><i class="sw lg-b"></i>حالة بين ذلك</span><span><i class="sw lg-p"></i>لم تُنجز أي مهمة</span><span><i class="sw lg-n"></i>بلا مهام أو لم تُحسم</span></div></div>
+<div class="card"><div class="card-head"><h2 id="pt"></h2><div class="btn-row"><button type="button" class="btn btn-outline" id="dnote">ملاحظة</button><button type="button" class="btn" data-new="task" data-sel="1"><svg class="i" aria-hidden="true"><use href="#i-plus"/></svg> مهمة</button></div></div>
+<div id="dlist"></div><p class="note-line" id="dnoteline" hidden></p></div></div>
+</section>
+
+<section id="v-reports" class="view">
+<div class="page-head"><div class="row"><button type="button" class="icon-btn" data-mnav="-1" aria-label="الشهر السابق"><svg class="i" aria-hidden="true"><use href="#i-prev"/></svg></button><h1 id="rt">تقرير الشهر</h1><button type="button" class="icon-btn" data-mnav="1" aria-label="الشهر التالي"><svg class="i" aria-hidden="true"><use href="#i-next"/></svg></button></div></div>
+<p class="sub" id="sent"></p>
+<div class="card stats" id="stats"></div>
+<div class="grid-2">
+<div class="card"><h2>المنجزة والملغاة</h2><div id="donut"></div></div>
+<div class="card"><h2>الأسابيع</h2><div id="mchart"></div></div>
+<div class="card"><h2>ألوان الأيام</h2><p class="sub">عدد أيام الشهر بحسب لونها في التقويم.</p><div id="dchart"></div></div>
+<div class="card"><h2>المنجز بحسب الفئة</h2><p class="sub">عدد المهام المنجزة في كل فئة.</p><div id="cchart"></div></div>
+</div>
+<button type="button" class="btn" id="saveimg">حفظ التقرير كصورة</button>
+</section>
+
+<section id="v-notes" class="view">
+<div class="page-head"><div class="row"><button type="button" class="icon-btn" data-mnav="-1" aria-label="الشهر السابق"><svg class="i" aria-hidden="true"><use href="#i-prev"/></svg></button><h1 id="nt">الملاحظات</h1><button type="button" class="icon-btn" data-mnav="1" aria-label="الشهر التالي"><svg class="i" aria-hidden="true"><use href="#i-next"/></svg></button></div><button type="button" class="btn" data-new="note"><svg class="i" aria-hidden="true"><use href="#i-plus"/></svg> ملاحظة</button></div>
+<div class="card" id="nlist"></div>
+</section>
+
+<section id="v-settings" class="view">
+<div class="page-head"><h1>الإعدادات</h1></div>
+<div class="grid-2">
+<div class="card form-grid"><h2>الإشعارات</h2><p id="pst" class="hint"></p>
+<div class="btn-row"><button type="button" class="btn" id="pon">تفعيل الإشعارات على هذا الجهاز</button><button type="button" class="btn btn-outline" id="poff" hidden>إيقاف على هذا الجهاز</button></div>
+<label class="check-line"><input type="checkbox" id="sg"> تنبيه الهدف الأسبوعي إذا لم يتقدّم بحلول الاثنين</label>
+<label class="check-line"><input type="checkbox" id="se"> تذكير مسائي بالمهام غير المحسومة</label>
+<label class="field">ساعة التذكير<input type="time" id="stime" value="21:00"></label>
+<h3>وضع الراحة</h3><p class="hint">لا تصل أي إشعارات بين التاريخين.</p>
+<label class="field">من<input type="date" id="rfrom"></label><label class="field">إلى<input type="date" id="rto"></label>
+<div class="btn-row"><button type="button" class="btn" id="ssave">حفظ</button><button type="button" class="btn btn-outline" id="ptest">إشعار تجريبي</button></div><p id="smsg" class="hint"></p></div>
+<div class="stack">
+<div class="card form-grid"><h2>المظهر</h2><div class="seg" role="group" aria-label="المظهر"><button type="button" data-th="auto">تلقائي</button><button type="button" data-th="light">فاتح</button><button type="button" data-th="dark">داكن</button></div></div>
+<form id="pf" class="card form-grid"><h2>تغيير كلمة المرور</h2>
+<label class="field">كلمة المرور الحالية<input id="pc" type="password" autocomplete="current-password" required></label>
+<label class="field">كلمة المرور الجديدة (10 أحرف على الأقل)<input id="pn" type="password" minlength="10" autocomplete="new-password" required></label>
+<button class="btn">تغيير</button><p id="pmsg" class="hint"></p></form>
+<div class="card form-grid"><h2>تصدير البيانات</h2><p class="sub">ملف CSV بكل المهام والأهداف، يُفتح في Excel أو أي برنامج جداول.</p><button type="button" class="btn btn-outline" id="exp">تصدير CSV</button></div>
+<form id="wf" class="card form-grid"><h2>حذف كل البيانات</h2><p class="sub">يحذف كل المهام والعادات والأهداف والملاحظات نهائيًا ويُبقي الحساب. للتأكيد تُكتب كلمة «حذف».</p>
+<input id="wc" placeholder="حذف" aria-label="كلمة التأكيد" autocomplete="off"><button class="btn btn-danger">حذف نهائي</button><p id="wmsg" class="hint"></p></form>
+<form method="post" action="{{ url_for('logout') }}" class="card"><input type="hidden" name="csrf" value="{{ csrf() }}"><button class="btn btn-outline">تسجيل الخروج</button></form>
+</div></div>
+</section>
+</main>
+</div>
+</div>
+<nav class="bottom" aria-label="التنقل السريع">
+<a href="#home" data-v="home"><svg class="i" aria-hidden="true"><use href="#i-home"/></svg><span>الرئيسية</span></a>
+<a href="#tasks" data-v="tasks"><svg class="i" aria-hidden="true"><use href="#i-tasks"/></svg><span>المهام</span></a>
+<a href="#calendar" data-v="calendar"><svg class="i" aria-hidden="true"><use href="#i-calendar"/></svg><span>التقويم</span></a>
+<a href="#goals" data-v="goals"><svg class="i" aria-hidden="true"><use href="#i-goals"/></svg><span>الأهداف</span></a>
+<button type="button" id="more" aria-controls="side" aria-expanded="false"><svg class="i" aria-hidden="true"><use href="#i-grid"/></svg><span>المزيد</span></button>
+</nav>
+
+<dialog id="dlg" aria-labelledby="dt">
+<form id="dform" novalidate>
+<div class="dlg-head"><h2 id="dt"></h2><button type="button" class="icon-btn" id="dx" aria-label="إغلاق"><svg class="i" aria-hidden="true"><use href="#i-close"/></svg></button></div>
+<div class="form-grid">
+<label class="field" data-for="task goal habit">العنوان<input id="f-title" maxlength="200" autocomplete="off"></label>
+<label class="field" data-for="task note">اليوم<input type="date" id="f-day"></label>
+<label class="field" data-for="task goal habit">الفئة<select id="f-cat"></select></label>
+<label class="field" data-for="task-new">الهدف المرتبط<select id="f-goal"></select></label>
+<label class="field" data-for="goal">عدد الأيام في الأسبوع<input type="number" id="f-target" min="1" max="7" value="3"></label>
+<div class="field" data-for="habit">أيام العادة<div class="days" id="f-days"></div></div>
+<label class="field" data-for="note">الملاحظة<textarea id="f-text" maxlength="2000"></textarea></label>
+<p class="alert err" id="derr" role="alert" hidden></p>
+</div>
+<div class="btn-row"><button type="button" class="btn btn-outline" id="dcancel">إلغاء</button><button class="btn" id="dsave">حفظ</button></div>
+</form>
+</dialog>
+<div id="toast" class="toast" role="status" aria-live="polite" hidden></div>
+{% if vendor %}<script defer src="{{ url_for('static', filename='vendor/gsap.min.js') }}"></script>
+<script defer src="{{ url_for('static', filename='vendor/lenis.min.js') }}"></script>{% endif %}
+<script defer src="{{ url_for('static', filename='app.js') }}"></script>
+</body></html>

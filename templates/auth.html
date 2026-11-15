@@ -1,0 +1,27 @@
+<!doctype html><html lang="ar" dir="rtl"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><title>TLTD</title>
+<link rel="icon" href="{{ url_for('static', filename='icon-192.png') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}"></head>
+<body class="auth"><svg class="leaf l1" viewBox="0 0 100 100" aria-hidden="true"><path d="M50 95 C10 70 5 30 50 5 C95 30 90 70 50 95Z"/></svg><svg class="leaf l2" viewBox="0 0 100 100" aria-hidden="true"><path d="M50 95 C10 70 5 30 50 5 C95 30 90 70 50 95Z"/></svg>
+<main class="auth-card">
+<img class="auth-logo" src="{{ url_for('static', filename='img/logo.svg') }}" alt="TLTD، Too Lazy To Do">
+<img class="auth-turtle" src="{{ url_for('static', filename='img/mascot-main.svg') }}" alt="">
+{% if code %}
+<h1>رمز الاستعادة الجديد</h1><p class="sub">يُحفظ في مكان آمن؛ يظهر مرة واحدة فقط.</p><p class="code">{{ code }}</p>
+<a class="btn" href="{{ url_for('login') }}">متابعة إلى الدخول</a>
+{% else %}
+<h1>{{ 'استعادة الدخول' if mode == 'recover' else 'مرحبًا بعودتك' }}</h1>
+<p class="sub">{{ 'يُدخل رمز الاستعادة لتعيين كلمة مرور جديدة.' if mode == 'recover' else 'خطوة صغيرة تكفي لبدء اليوم.' }}</p>
+{% if err %}<p class="alert err" role="alert">{{ err }}</p>{% endif %}
+<form method="post"><input type="hidden" name="csrf" value="{{ csrf() }}">
+<label class="field">اسم المستخدم<input name="username" autocomplete="username" required></label>
+{% if mode == 'recover' %}
+<label class="field">رمز الاستعادة<input name="code" autocomplete="off" required></label>
+<label class="field">كلمة المرور الجديدة<input name="password" type="password" autocomplete="new-password" minlength="10" required></label>
+{% else %}
+<label class="field">كلمة المرور<input name="password" type="password" autocomplete="current-password" required></label>
+{% endif %}
+<button class="btn">{{ 'تعيين كلمة المرور' if mode == 'recover' else 'تسجيل الدخول' }}</button></form>
+<p><a class="btn btn-quiet" href="{{ url_for('login') if mode == 'recover' else url_for('recover') }}">{{ 'العودة إلى الدخول' if mode == 'recover' else 'نسيتُ كلمة المرور' }}</a></p>
+{% endif %}
+</main></body></html>
